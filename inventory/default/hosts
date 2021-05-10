@@ -1,0 +1,8 @@
+[nodes]
+hci-[0:2]
+
+[kube_controllers]
+hci-[0:2]
+
+[kube_workers]
+hci-[0:2]

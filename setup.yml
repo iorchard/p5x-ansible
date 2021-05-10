@@ -1,0 +1,10 @@
+---
+- name: Install Pengrix Kubernetes
+  any_errors_fatal: true
+  hosts:
+    - nodes
+  roles:
+    - {role: iorchard.keepalived, tags: keepalived}
+    - {role: iorchard.crio, tags: crio}
+    - {role: iorchard.k8s, tags: k8s}
+...
