@@ -3,6 +3,15 @@ Pengrix Ansible
 
 This is a guide to install Pengrix Kubernetes(PK) using ansible playbook.
 
+Assumptions
+-------------
+
+* The first node in nodes group is the ansible deployer.
+* Ansible user in every node has a sudo privilege without NOPASSWD option.
+  We will use vault_sudo_pass in ansible vault.
+* Ansible user in every node has the same password.
+  We will use vault_ssh_pass in ansible vault.
+
 Install ansible
 -----------------
 
@@ -42,16 +51,9 @@ Run ssh-agent and add the private key.::
    $ ssh-add
    Enter passphrase: (Enter your passphrase of ssh key)
 
-Create a vault file for ssh and sudo password.::
-
-   $ ansible-vault create inventory/group_vars/all/vault.yaml
-   New Vault password:
-   Confirm New Vault password:
-   ssh_pass: '<ssh password>'
-
 Copy default inventory and create hosts file for your environment.::
 
-   $ cp -a inventory/default inventory/<your_cluster_name>
+   $ cp -a inventory/default inventory/<your_site>
    $ vi inventory/<your_cluster_name>/hosts
    [nodes]
    hci-[0:2]
@@ -62,13 +64,35 @@ Copy default inventory and create hosts file for your environment.::
    [kube_workers]
    hci-[0:2]
 
+Copy ansible.cfg.sample to ansible.cfg and 
+update inventory value in ansible.cfg.::
+
+   $ cp ansible.cfg.sample ansible.cfg
+   $ vi ansible.cfg
+   inventory = inventory/<your_site>/hosts
+
+Create a vault file for ssh and sudo password.::
+
+   $ ansible-vault create inventory/<your_site>/group_vars/all/vault.yml
+   New Vault password:
+   Confirm New Vault password:
+   vault_ssh_pass: "<ssh password>"
+   vault_sudo_pass: "<sudo password>"
+
+Change keepalived virtual ip address for your site in vars.yml.::
+
+   $ vi inventory/<your_site>/group_vars/all/vars.yml
+   ...
+   # keepalived
+   keepalived_vip: "192.168.21.120"
+
 Check the connectivity to all nodes.::
 
    $ ansible --ask-vault-password -m ping all
 
 Get ansible roles to install pengrix kubernetes.::
 
-   $ ansible-galaxy role install -r requirements.yml
+   $ ansible-galaxy role install --force --role-file requirements.yml
 
 Run ansible playbook.::
 
