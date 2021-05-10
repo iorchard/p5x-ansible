@@ -1,5 +1,5 @@
 ---
-ssh_pass: "{{ vault_ssh_pass }}"
-ansible_ssh_pass: "{{ ssh_pass }}"
+ansible_ssh_pass: "{{ vault_ssh_pass }}"
+ansible_become_pass: "{{ vault_sudo_pass }}"
 ansible_python_interpreter: "/usr/bin/python3"
 ...
