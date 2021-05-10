@@ -34,35 +34,29 @@ Install ansible.::
    $ python -m pip install wheel
    $ python -m pip install ansible
 
-ssh keys
+Prepare
 ---------
-
-Install sshpass package.::
-
-   $ sudo apt install -y sshpass
-
-Create ssh key pair with passphrase on deployer.::
-
-   $ ssh-keygen
-
-Run ssh-agent and add the private key.::
-
-   $ eval "$(ssh-agent -s)"
-   $ ssh-add
-   Enter passphrase: (Enter your passphrase of ssh key)
 
 Copy default inventory and create hosts file for your environment.::
 
    $ cp -a inventory/default inventory/<your_site>
    $ vi inventory/<your_cluster_name>/hosts
-   [nodes]
-   hci-[0:2]
+   hci-0 ansible_host=192.168.21.121 ansible_port=22 ansible_user=pengrix
+   hci-1 ansible_host=192.168.21.122 ansible_port=22 ansible_user=pengrix
+   hci-2 ansible_host=192.168.21.123 ansible_port=22 ansible_user=pengrix
    
    [kube_controllers]
    hci-[0:2]
    
    [kube_workers]
    hci-[0:2]
+   
+   [nodes:children]
+   kube_controllers
+   kube_workers
+
+Change hostname and ip address in each ansible_host variable for your
+environment.
 
 Copy ansible.cfg.sample to ansible.cfg and 
 update inventory value in ansible.cfg.::
@@ -89,6 +83,9 @@ Change keepalived virtual ip address for your site in vars.yml.::
 Check the connectivity to all nodes.::
 
    $ ansible --ask-vault-password -m ping all
+
+Run
+----
 
 Get ansible roles to install pengrix kubernetes.::
 

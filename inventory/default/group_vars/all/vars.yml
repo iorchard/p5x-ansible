@@ -11,7 +11,7 @@ keepalived_vip: "192.168.21.120"
 crio_version: "1.20"
 
 # k8s
-control_plance_endpoint_ip: "{{ keepalived_vip }}"
+control_plane_endpoint_ip: "{{ keepalived_vip }}"
 kubernetes_version: "v1.21.0"
 cilium_version: "1.9.6"
 ...
