@@ -9,3 +9,5 @@
   version: main
 - src: https://github.com/iorchard/iorchard.k8s
   version: main
+- src: https://github.com/iorchard/iorchard.cilium
+  version: main
