@@ -3,8 +3,6 @@
 #  name: iorchard.crio
 #
 # from github
-- src: https://github.com/iorchard/iorchard.keepalived
-  version: main
 - src: https://github.com/iorchard/iorchard.crio
   version: main
 - src: https://github.com/iorchard/iorchard.k8s
