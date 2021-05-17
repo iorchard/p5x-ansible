@@ -58,12 +58,9 @@ Copy default inventory and create hosts file for your environment.::
 
 Modify hostname, ip, port, and user in hosts file for your environment.
 
-Copy ansible.cfg.sample to ansible.cfg and 
-update inventory value in ansible.cfg.::
+Create and update ansible.cfg.::
 
-   $ cp ansible.cfg.sample ansible.cfg
-   $ vi ansible.cfg
-   inventory = inventory/<mysite>/hosts
+   $ sed "s/MYSITE/$MYSITE/" ansible.cfg.sample > ansible.cfg
 
 Create a vault file for ssh and sudo password.::
 
