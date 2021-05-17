@@ -39,8 +39,9 @@ Prepare
 
 Copy default inventory and create hosts file for your environment.::
 
-   $ cp -a inventory/default inventory/<your_site>
-   $ vi inventory/<your_cluster_name>/hosts
+   $ MYSITE="mysite"
+   $ cp -a inventory/default inventory/$MYSITE
+   $ vi inventory/$MYSITE/hosts
    hci-0 ansible_host=192.168.21.121 ansible_port=22 ansible_user=pengrix
    hci-1 ansible_host=192.168.21.122 ansible_port=22 ansible_user=pengrix
    hci-2 ansible_host=192.168.21.123 ansible_port=22 ansible_user=pengrix
@@ -62,22 +63,24 @@ update inventory value in ansible.cfg.::
 
    $ cp ansible.cfg.sample ansible.cfg
    $ vi ansible.cfg
-   inventory = inventory/<your_site>/hosts
+   inventory = inventory/<mysite>/hosts
 
 Create a vault file for ssh and sudo password.::
 
-   $ ansible-vault create inventory/<your_site>/group_vars/all/vault.yml
+   $ ansible-vault create inventory/$MYSITE/group_vars/all/vault.yml
    New Vault password:
    Confirm New Vault password:
    vault_ssh_pass: "<ssh password>"
    vault_sudo_pass: "<sudo password>"
 
-Change keepalived virtual ip address for your site in vars.yml.::
+Change keepalived management network interface name and
+virtual ip address for your site in vars.yml.::
 
-   $ vi inventory/<your_site>/group_vars/all/vars.yml
+   $ vi inventory/$MYSITE/group_vars/all/vars.yml
    ...
    # keepalived
-   keepalived_vip: "192.168.21.120"
+   keepalived_interface: "<management_interface>"
+   keepalived_vip: "<keepalived_virtual_ip>"
 
 Check the connectivity to all nodes.::
 

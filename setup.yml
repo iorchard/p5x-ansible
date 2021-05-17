@@ -6,4 +6,5 @@
   roles:
     - {role: iorchard.crio, tags: crio}
     - {role: iorchard.k8s, tags: k8s}
+    - {role: iorchard.cilium, tags: cilium}
 ...
