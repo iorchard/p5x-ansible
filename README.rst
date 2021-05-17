@@ -55,8 +55,7 @@ Copy default inventory and create hosts file for your environment.::
    kube_controllers
    kube_workers
 
-Change hostname and ip address in each ansible_host variable for your
-environment.
+Modify hostname, ip, port, and user in hosts file for your environment.
 
 Copy ansible.cfg.sample to ansible.cfg and 
 update inventory value in ansible.cfg.::
