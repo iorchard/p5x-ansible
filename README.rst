@@ -64,11 +64,10 @@ Create and update ansible.cfg.::
 
 Create a vault file for ssh and sudo password.::
 
-   $ ansible-vault create inventory/$MYSITE/group_vars/all/vault.yml
-   New Vault password:
-   Confirm New Vault password:
-   vault_ssh_pass: "<ssh password>"
-   vault_sudo_pass: "<sudo password>"
+   $ ./vault.sh
+   ssh password: 
+   sudo password: 
+   Encryption successful
 
 Change keepalived management network interface name and
 virtual ip address for your site in vars.yml.::
@@ -81,7 +80,7 @@ virtual ip address for your site in vars.yml.::
 
 Check the connectivity to all nodes.::
 
-   $ ansible --ask-vault-password -m ping all
+   $ ansible -m ping all
 
 Run
 ----
@@ -92,4 +91,6 @@ Get ansible roles to install pengrix kubernetes.::
 
 Run ansible playbook.::
 
-   $ ansible-playbook --ask-vault-password setup.yml
+   $ ansible-playbook setup.yml
+
+

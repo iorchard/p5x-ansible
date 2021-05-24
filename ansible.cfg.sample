@@ -5,3 +5,4 @@ host_key_checking = false
 deprecation_warnings = false
 stdout_callback = counter_enabled
 roles_path = ~/.ansible/roles
+vault_password_file = .vaultpass

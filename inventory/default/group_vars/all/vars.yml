@@ -12,7 +12,7 @@ keepalived_vip: "192.168.21.120"
 haproxy_bind_port: "8443"
 
 # crio
-crio_version: "1.20"
+crio_version: "1.21"
 
 # k8s
 kubernetes_version: "v1.21.0"
