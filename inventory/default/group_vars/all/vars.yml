@@ -18,8 +18,8 @@ crio_version: "1.21"
 kubernetes_version: "1.21.0"
 
 # cilium
-cilium_version: "1.9.6"
-cilium_pod_cidr: "10.0.0.0/8"
+cilium_version: "1.10.3"
+cilium_pod_cidr: "172.24.0.0/16"
 cilium_pod_mask: 24
 cilium_lb_mode: "dsr"
 cilium_lb_algorithm: "maglev"
