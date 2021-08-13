@@ -1,0 +1,10 @@
+---
+- name: Install Pengrix Kubernetes
+  any_errors_fatal: true
+  hosts:
+    - nodes
+  roles:
+    - {role: p5x.crio, tags: crio}
+    - {role: p5x.k8s, tags: k8s}
+    - {role: p5x.cilium, tags: cilium}
+...

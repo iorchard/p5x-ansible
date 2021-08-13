@@ -22,11 +22,11 @@ Install python3-venv.::
 
 Create p5x virtual env.::
 
-   $ python3 -m venv .envs/p5x
+   $ python3 -m venv ~/.envs/p5x
 
 Source the env.::
 
-   $ source .envs/p5x/bin/activate
+   $ source ~/.envs/p5x/bin/activate
 
 Install ansible.::
 
@@ -39,7 +39,7 @@ Prepare
 
 Copy default inventory and create hosts file for your environment.::
 
-   $ MYSITE="mysite" # put your kubernetes site name
+   $ export MYSITE="mysite" # put your kubernetes site name
    $ cp -a inventory/default inventory/$MYSITE
    $ vi inventory/$MYSITE/hosts
    hci-0 ansible_host=192.168.21.121 ansible_port=22 ansible_user=pengrix
